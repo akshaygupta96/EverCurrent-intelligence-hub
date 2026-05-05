@@ -1,0 +1,9 @@
+# MEETING TRANSCRIPT: B-800 THERMAL SYNC
+# DATE: April 29, 2026
+# ATTENDEES: Alex (MechE), Sarah (EE), Tom (Thermal)
+
+[00:05:12] Tom: The 110C sims on the MOSFETs are definitely a blocker. We are losing too much airflow with the 5mm baseplate shift.
+[00:07:45] Sarah: Can we use a higher-end TIM (Thermal Interface Material)?
+[00:08:30] Alex: I checked the specs. If we switch to the "Gap Pad 5000S35" from Bergquist, it has a much higher conductivity. It might buy us the 5-7 degrees we need.
+[00:10:15] Tom: Let's tentatively approve that. Alex, you need to verify the new thickness doesn't mess with the mounting pressure.
+[00:12:00] DECISION: Team will trial the "Gap Pad 5000S35" as a mitigation for the airflow loss.

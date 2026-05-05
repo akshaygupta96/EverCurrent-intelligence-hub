@@ -1,0 +1,35 @@
+EverCurrent Robotics — Actuator A-1 Emergency Technical Sync
+Date: April 22, 2026 | 2:00 PM PT
+Attendees: Mike Patel (Robotics), Sarah Chen (EE), Alex Johnson (Mech), Lisa Morgan (PM), Jason Wu (Supply Chain)
+
+--- CONTEXT ---
+EVT torque failure triggered this meeting. Elbow joint logged 92Nm at full extension during 10kg lift.
+H-40 Harmonic Drive rated to 85Nm peak. Current design is 8% over spec.
+
+--- DECISIONS MADE ---
+1. PAYLOAD REDUCTION (APPROVED): Reduce EVT payload target from 10kg to 8kg.
+   - Rationale: Keeps H-40 within rated limits for EVT phase. Avoids 10-week H-50 procurement delay.
+   - Owner: Mike Patel | Deadline: April 25
+   - NOTE: This is an EVT concession only. DVT must hit 10kg. H-50 procurement must begin no later than May 15.
+
+2. H-50 EVALUATION (APPROVED): Jason Wu to open H-50 (110Nm peak) sourcing with Harmonic Drive AG.
+   - Lead time confirmed at 10 weeks from PO date.
+   - DVT schedule must account for this: H-50 must be on-site by July 1 to meet DVT start.
+   - Owner: Jason Wu | Deadline: April 28
+
+3. FET VOLTAGE SPIKE INVESTIGATION (IN PROGRESS): Sarah Chen to scope the motor driver board FET behavior
+   during over-torque trip events. Risk of FET damage could require PCB rev.
+   - Owner: Sarah Chen | Deadline: April 26
+
+--- OPEN RISKS ---
+- If FET damage confirmed → PCB rev required → additional 3-week delay minimum.
+- H-50 availability in North America: zero current stock. All units ship from Germany.
+- DVT schedule contingency: If H-50 not on-site by July 1, DVT slips to August.
+
+--- ACTION ITEMS ---
+| Owner       | Action                                        | Due Date  |
+|-------------|-----------------------------------------------|-----------|
+| Mike Patel  | Update CAD model for 8kg payload constraint   | Apr 25    |
+| Jason Wu    | Issue PO request for H-50 with Harmonic Drive | Apr 28    |
+| Sarah Chen  | Scope FET voltage spikes, report findings     | Apr 26    |
+| Lisa Morgan | Update DVT milestone dates in project tracker | Apr 23    |

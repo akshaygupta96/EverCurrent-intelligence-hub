@@ -1,0 +1,35 @@
+{
+    "last_updated": "2026-05-01T00:00:00Z",
+    "vendor_channels": [
+        {
+            "vendor": "tmcorp.procurement",
+            "project": "Battery B-800",
+            "channel": "vendor-connect-battery",
+            "status": "active",
+            "last_message_ts": "2026-04-30T11:00:00Z",
+            "invite_status": "accepted",
+            "fallback_email": "procurement@taiwanmotorcorp.com",
+            "alert": null
+        },
+        {
+            "vendor": "hdrive.ag",
+            "project": "Actuator A-1",
+            "channel": "vendor-connect-actuator",
+            "status": "degraded",
+            "last_message_ts": "2026-04-27T09:15:00Z",
+            "invite_status": "expired",
+            "fallback_email": "sales@harmonicdrive.ag",
+            "alert": "No response in 3 days. Slack Connect invite expired. Fallback email sent 2026-04-30."
+        },
+        {
+            "vendor": "apexfab.ops",
+            "project": "Chassis C-200",
+            "channel": "vendor-connect-chassis",
+            "status": "active",
+            "last_message_ts": "2026-04-30T14:30:00Z",
+            "invite_status": "accepted",
+            "fallback_email": "orders@apexfab.com",
+            "alert": null
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+EverCurrent Robotics — Chassis C-200 Concept Kickoff
+Date: April 15, 2026 | 10:00 AM PT
+Attendees: Alex Johnson (Mech Lead), Mike Patel (Robotics), Ben Carter (Marketing), Lisa Morgan (PM), Jason Wu (Supply Chain)
+
+--- PROJECT OVERVIEW ---
+C-200 is the next-generation lightweight chassis for the field robot platform.
+Design targets: <12kg frame weight, 2.5x stiffness improvement over C-100, production unit cost target <$1,200.
+
+--- MATERIAL TRADE STUDY RESULTS ---
+Three candidates evaluated: 6061-T6 Aluminum, 5052 Aluminum, Carbon Fiber Reinforced Polymer (CFRP).
+
+| Material        | Weight (est.) | Cost/unit | Lead Time | Notes                          |
+|-----------------|---------------|-----------|-----------|--------------------------------|
+| 6061-T6 Aluminum| 11.4 kg       | $620      | 3 weeks   | Strong supplier base, proven   |
+| 5052 Aluminum   | 12.1 kg       | $480      | 2 weeks   | Cheaper, lower stiffness       |
+| CFRP            | 7.2 kg        | $1,850    | 12 weeks  | Exceeds weight target, 3x cost |
+
+--- DECISIONS MADE ---
+1. MATERIAL SELECTION (APPROVED): 6061-T6 Aluminum selected for EVT phase.
+   - Rationale: Meets weight target, fits within budget, established supply chain through Apex Fabrication.
+   - CFRP deferred to DVT evaluation only if cost reduction pathway identified (target: <$900/unit).
+   - Owner: Alex Johnson
+
+2. DESIGN CONSTRAINTS LOCKED:
+   - Max frame weight: 12 kg (EVT allowance, target <11.5 kg)
+   - Mounting interface: Must maintain C-100 bolt pattern for backward compatibility with existing arm actuators.
+   - IP rating target: IP54 minimum for outdoor field operation.
+
+3. SUPPLIER SELECTION: Apex Fabrication selected for EVT prototype run (3 units).
+   - Apex quote: $620/unit for 6061-T6, 4-week turnaround for first article.
+   - Owner: Jason Wu | Deadline: April 22
+
+--- OPEN RISKS ---
+- CFRP cost pathway unclear. If not resolved by DVT kickoff, production unit will be aluminum.
+- C-100 bolt pattern compatibility: Needs formal verification by Mike Patel before CAD freeze.
+- Marketing has flagged weight as a customer differentiator — Ben Carter to provide competitive benchmark data by May 1.
+
+--- ACTION ITEMS ---
+| Owner       | Action                                              | Due Date |
+|-------------|-----------------------------------------------------|----------|
+| Alex Johnson| Begin 6061-T6 CAD model, share draft for review     | Apr 29   |
+| Jason Wu    | Issue Apex Fabrication PO for 3 EVT prototype units | Apr 22   |
+| Mike Patel  | Verify C-100 bolt pattern compatibility             | Apr 25   |
+| Ben Carter  | Provide competitive weight benchmarking data        | May 1    |
+| Lisa Morgan | Schedule DVT kickoff gate review for June 15        | Apr 17   |

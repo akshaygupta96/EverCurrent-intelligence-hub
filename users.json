@@ -1,0 +1,116 @@
+{
+    "users": [
+        {
+            "username": "akshay.d",
+            "display_name": "Akshay D.",
+            "department": "Engineering",
+            "role": "Data Engineer",
+            "assigned_projects": ["Battery B-800", "Actuator A-1", "Chassis C-200"],
+            "stakeholders": ["SVP Infrastructure", "Director of Engineering"]
+        },
+        {
+            "username": "alex.johnson",
+            "display_name": "Alex Johnson",
+            "department": "Engineering",
+            "role": "Mechanical Engineer",
+            "assigned_projects": ["Battery B-800", "Chassis C-200"],
+            "stakeholders": ["Hardware Lead"]
+        },
+        {
+            "username": "sarah.chen",
+            "display_name": "Sarah Chen",
+            "department": "Engineering",
+            "role": "Electrical Engineer",
+            "assigned_projects": ["Battery B-800", "Actuator A-1"],
+            "stakeholders": ["PCB Lead", "alex.johnson"]
+        },
+        {
+            "username": "mike.patel",
+            "display_name": "Mike Patel",
+            "department": "Engineering",
+            "role": "Robotics Engineer",
+            "assigned_projects": ["Actuator A-1", "Chassis C-200"],
+            "stakeholders": ["CTO", "lisa.morgan"]
+        },
+        {
+            "username": "jason.wu",
+            "display_name": "Jason Wu",
+            "department": "Supply Chain",
+            "role": "Supply Chain",
+            "assigned_projects": ["Battery B-800", "Actuator A-1", "Chassis C-200"],
+            "stakeholders": ["CPO", "raj.sharma"]
+        },
+        {
+            "username": "lisa.morgan",
+            "display_name": "Lisa Morgan",
+            "department": "Project Management",
+            "role": "Project Manager",
+            "assigned_projects": ["Battery B-800", "Actuator A-1", "Chassis C-200"],
+            "stakeholders": ["CEO", "CFO", "CTO"]
+        },
+        {
+            "username": "raj.sharma",
+            "display_name": "Raj Sharma",
+            "department": "Finance",
+            "role": "Finance",
+            "assigned_projects": ["Battery B-800", "Actuator A-1", "Chassis C-200"],
+            "stakeholders": ["CFO", "jason.wu"]
+        },
+        {
+            "username": "priya.kumar",
+            "display_name": "Priya Kumar",
+            "department": "Quality",
+            "role": "QA Engineer",
+            "assigned_projects": ["Battery B-800", "Actuator A-1"],
+            "stakeholders": ["VP Quality", "lisa.morgan"]
+        },
+        {
+            "username": "ben.carter",
+            "display_name": "Ben Carter",
+            "department": "Marketing",
+            "role": "Marketing",
+            "assigned_projects": ["Chassis C-200"],
+            "stakeholders": ["CMO", "lisa.morgan"]
+        },
+        {
+            "username": "tmcorp.procurement",
+            "display_name": "Taiwan Motor Corp",
+            "department": "External Partner",
+            "role": "Vendor",
+            "assigned_projects": ["Battery B-800"],
+            "stakeholders": ["EverCurrent Procurement"]
+        },
+        {
+            "username": "hdrive.ag",
+            "display_name": "Harmonic Drive AG",
+            "department": "External Partner",
+            "role": "Vendor",
+            "assigned_projects": ["Actuator A-1"],
+            "stakeholders": ["EverCurrent Procurement"]
+        },
+        {
+            "username": "apexfab.ops",
+            "display_name": "Apex Fabrication",
+            "department": "External Partner",
+            "role": "Vendor",
+            "assigned_projects": ["Chassis C-200"],
+            "stakeholders": ["EverCurrent Procurement"]
+        },
+        {
+            "username": "tom.harris",
+            "display_name": "Tom Harris",
+            "department": "Engineering",
+            "role": "Thermal Engineer",
+            "assigned_projects": ["Battery B-800"],
+            "stakeholders": ["alex.johnson"],
+            "_loginable": false,
+            "_note": "Background user — appears in meeting transcripts. Not a demo login persona. Added for identity map resolution only."
+        }
+    ],
+    "vendor_partners": [
+        {"name": "Taiwan Motor Corp", "slack_user": "tmcorp.procurement", "project": "Battery B-800", "impact_level": "Critical"},
+        {"name": "Bergquist Materials", "project": "Battery B-800", "impact_level": "High"},
+        {"name": "Harmonic Drive AG", "slack_user": "hdrive.ag", "project": "Actuator A-1", "impact_level": "Critical"},
+        {"name": "Apex Fabrication", "slack_user": "apexfab.ops", "project": "Chassis C-200", "impact_level": "Medium"}
+    ]
+}

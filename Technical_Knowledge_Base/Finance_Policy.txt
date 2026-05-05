@@ -1,0 +1,9 @@
+# EVERCURRENT FINANCE & PROCUREMENT POLICY
+# FISCAL YEAR 2026
+
+## 1. PROJECT PHASES & CASH FLOW
+*   **EVT (Prototyping):** High flexibility. Budget deviations up to 20% allowed without CFO approval.
+*   **PVT (Production):** **ZERO FLEXIBILITY.** Any delay in design lock affects the mass-production run and triggers penalty clauses with the CM (Contract Manufacturer).
+
+## 2. VENDOR RISK THRESHOLDS
+*   **Single-Source Risk:** Any custom part with a lead time > 4 weeks must have a documented secondary source or a 10% cash reserve for "Expedited Shipping."

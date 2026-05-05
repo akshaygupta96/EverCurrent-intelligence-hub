@@ -1,0 +1,49 @@
+EverCurrent Robotics — Q2 2026 Hardware Portfolio Budget
+Classification: CONFIDENTIAL — Finance & Project Management Only
+Approved by: CFO | Effective: April 1, 2026
+
+=== PORTFOLIO SUMMARY ===
+Total Q2 Hardware CAPEX Allocation: $2,400,000
+Headcount Budget (Engineering): Covered under separate OpEx line.
+
+=== PROJECT BUDGETS ===
+
+--- Battery B-800 ---
+Q2 CAPEX Allocation:        $980,000
+Unit Cost Target (DVT):     $847 per unit (at 500-unit production run)
+Unit Cost Target (MP):      $710 per unit (at 5,000-unit production run)
+Approved Supplier Spend:    $340,000 (Taiwan Motor Corp — cell supply)
+                            $85,000  (Bergquist Materials — thermal interface)
+Contingency Reserve:        $75,000 (available upon VP Engineering sign-off)
+Current Spend-to-Date:      $412,000 (42% of Q2 allocation consumed)
+RISK FLAG: Thermal redesign triggered by DVT blocker may add $45,000–$90,000 in
+           engineering + tooling costs. Contingency reserve would be fully consumed.
+           Escalation to CFO required if redesign cost exceeds $75,000.
+
+--- Actuator A-1 ---
+Q2 CAPEX Allocation:        $620,000
+Unit Cost Target (DVT):     $1,240 per unit
+Unit Cost Target (MP):      $890 per unit (at 2,000-unit production run)
+Approved Supplier Spend:    $210,000 (Harmonic Drive AG — H-40 gearbox supply)
+H-50 Upgrade Budget:        $95,000 (pre-approved for DVT transition, PO pending)
+Contingency Reserve:        $50,000
+Current Spend-to-Date:      $198,000 (32% of Q2 allocation consumed)
+RISK FLAG: H-50 procurement adds $95,000 against pre-approved budget. If FET PCB
+           revision required, additional $30,000–$55,000 tooling cost would require
+           CFO approval. Combined risk: potential $150,000 overage vs. Q2 plan.
+
+--- Chassis C-200 ---
+Q2 CAPEX Allocation:        $800,000
+Unit Cost Target (EVT):     $620 per unit (6061-T6 Aluminum, Apex Fabrication)
+Unit Cost Target (MP):      $490 per unit (target, subject to volume)
+CFRP Cost Gate:             CFRP only approved for DVT if unit cost pathway to
+                            <$900/unit confirmed. Current CFRP quote: $1,850/unit.
+Approved Supplier Spend:    $95,000 (Apex Fabrication — 3 EVT prototype units)
+Contingency Reserve:        $60,000
+Current Spend-to-Date:      $12,000 (2% of Q2 allocation consumed — Concept phase)
+
+=== POLICY REMINDERS ===
+- Any single purchase order >$50,000 requires VP Engineering + Finance co-sign.
+- Contingency draws require written justification submitted to Finance within 48 hours.
+- Supplier payments >30 days overdue must be escalated to CPO immediately.
+- See Finance_Policy.txt for full approval matrix and escalation thresholds.

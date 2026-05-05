@@ -1,0 +1,12 @@
+# TECHNICAL SPECIFICATION: A-1 ROBOTIC ACTUATOR
+# VERSION: 1.0 (CONFIDENTIAL)
+
+## 1. PERFORMANCE LIMITS
+*   **Max Payload:** 12.5 kg at full extension.
+*   **Peak Torque:** 85 Nm (Newton-meters).
+*   **Thermal Cutoff:** 85°C at the motor housing.
+
+## 2. MAINTENANCE & WEAR
+*   **Gearbox Type:** Harmonic Drive (Model H-40).
+*   **Lubrication Interval:** 5,000 cycles or 6 months.
+*   **Error Flags:** Error 0xA4 signals "Over-Torque Protection Active."

@@ -1,0 +1,18 @@
+# TECHNICAL SPECIFICATION: B-800 LITHIUM-ION BATTERY MODULE
+# VERSION: 2.1 (CONFIDENTIAL - EVERCURRENT ENGINEERING)
+
+## 1. MECHANICAL SPECIFICATIONS
+*   **Chassis Mounting:** Standard M5 bolt pattern.
+*   **Hole Tolerance:** All mounting hole deviations must remain within ±2.0mm of the primary axis to ensure alignment with the robot chassis harness.
+*   **Enclosure Material:** 6061-T6 Aluminum.
+
+## 2. THERMAL MANAGEMENT & SAFETY LIMITS
+*   **Operating Temp Range:** -20°C to +60°C.
+*   **MOSFET Critical Limit:** The Power Distribution Board (PDB) MOSFETs must not exceed **105°C** under peak load. 
+*   **Airflow Requirement:** Minimum of 15 CFM (Cubic Feet per Minute) must be maintained across the MOSFET heat sink array.
+*   **Thermal Protection:** Automatic shutdown (Graceful) will trigger if internal sensor T-104 reports >115°C for more than 3 seconds.
+
+## 3. ELECTRICAL INTERFACE
+*   **Nominal Voltage:** 48V DC.
+*   **Peak Current:** 120A (10s duration).
+*   **Communication:** CAN bus (2.0B) @ 500kbps.
