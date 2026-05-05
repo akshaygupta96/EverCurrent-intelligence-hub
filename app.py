@@ -218,9 +218,9 @@ def detect_process_triggers(project_threads):
 # before the design is frozen for DVT/PVT
 # ─────────────────────────────────────────────
 DESIGN_DEBT_KEYWORDS = [
-    "shim", "zip-tie", "zip tie", "hot-fix", "hotfix",
-    "workaround", "temporary", "tape", "jury-rig",
-    "duct tape", "band-aid", "bandaid", "quick fix", "kludge"
+    "shim", "rework", "bodge", "mod wire", "jumper wire",
+    "kapton tape", "dremel", "tolerance stack", "interference",
+    "waiver", "deviation", "non-compliant", "out of spec"
 ]
 
 def detect_design_debt(threads):

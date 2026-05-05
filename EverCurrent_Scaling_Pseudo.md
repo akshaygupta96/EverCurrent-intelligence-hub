@@ -1,6 +1,7 @@
 # EverCurrent Engineering Hub: Production Scaling Pseudocode
 
 ## Overview
+
 This document describes the **production-grade architecture** that replaces the prototype's
 flat JSON files and local Ollama calls. The core reasoning logic (3D matrix, RAG, noise filtering)
 stays identical — only the infrastructure connectors change.
@@ -8,7 +9,10 @@ stays identical — only the infrastructure connectors change.
 ---
 
 ## 1. The Data Privacy & Redaction Layer
+
 Handles External Partners (Slack Connect) and ensures IP never leaks.
+
+*Note: While the prototype uses application-level RBAC (shown below), production scale (based on Gruve architecture) implements **Network and Identity-level segmentation** where internal Vector DBs reside in a secured VPC, completely unreachable by Vendor LLM agents via IAM constraints.*
 
 ```python
 class SecurityFilter:
@@ -42,6 +46,7 @@ class SecurityFilter:
 ---
 
 ## 2. The Ingestion Pipeline
+
 Replaces flat JSON files with real-time event streams.
 
 ```python
@@ -97,6 +102,7 @@ class DataIngestor:
 ---
 
 ## 3. The Contextual Retrieval Engine (RAG)
+
 Replaces loading flat `.txt` files with semantic search across the Vector DB.
 
 ```python
@@ -127,6 +133,7 @@ def retrieve_ground_truth(query_context, user_profile, project_id):
 ---
 
 ## 4. The Multi-Project Orchestrator
+
 Generates a cross-project portfolio digest for any user.
 
 ```python
@@ -183,26 +190,28 @@ def generate_portfolio_digest(user_id):
 ┌─────────────────────────────────────────────────────────┐
 │            EverCurrent Intelligence Hub                 │
 │                                                         │
-│  [Slack Webhooks]  [Zoom/Otter]  [PLM/Drive]           │
+│   [Slack Webhooks]  [Zoom/Otter]  [PLM/Drive]           │
 │         │               │              │                │
 │         └───────────────┴──────────────┘                │
 │                         │                               │
-│              [Ingestion API + SecurityFilter]            │
+│             [Ingestion API + SecurityFilter]            │
 │                         │                               │
-│              [Celery Task Queue + Redis]                 │
+│             [Celery Task Queue + Redis]                 │
 │                         │                               │
-│              [Vector DB — Pinecone/ChromaDB]             │
+│       ┌─────────────────┴─────────────────┐             │
+│       │                                   │             │
+│ [Internal VPC Vector DB]       [External VPC Vector DB] │
+│       │                                   │             │
+│       └─────────────────┬─────────────────┘             │
 │                         │                               │
-│         ┌───────────────┴──────────────┐                │
-│         │                              │                │
 │  [Okta SCIM]              [vLLM GPU Cluster]            │
 │  Identity Resolver         LLM Inference                │
 │         │                              │                │
 │         └───────────────┬──────────────┘                │
 │                         │                               │
-│              [Portfolio Digest API]                     │
+│               [Portfolio Digest API]                    │
 │                         │                               │
-│              [Streamlit / React Dashboard]               │
+│             [Streamlit / React Dashboard]               │
 └─────────────────────────────────────────────────────────┘
 ```
 

@@ -90,13 +90,14 @@ The current implementation uses **zero-shot instruction prompts** — the AI is 
 | Layer | Mechanism | Purpose |
 | :--- | :--- | :--- |
 | **Pre-LLM Filter** | Strip restricted data from context *before* it reaches the model | Structural guarantee — AI can't reveal what it never sees |
+| **Network Segmentation** | Isolate internal vs vendor Vector DBs across separate VPCs with strict IAM roles | Architecture-level guarantee — Vendor agent has no network route to internal data |
 | **Output Scanner** | Regex + secondary LLM scans response for financial figures, vendor names, part numbers | Catch leakage before it reaches the user |
 | **Prompt Fine-Tuning** | Few-shot examples of correct internal vs. vendor summaries baked into the prompt | Consistent, domain-specific output quality |
 | **RLHF** | Engineers rate outputs; model learns what "good" looks like for hardware engineering | Continuous improvement loop |
 | **Domain Fine-Tuning** | Fine-tune on actual engineering Slack/PLM data | Model understands jargon without re-explanation |
 | **Audit Logging** | Hash + log every AI response in vendor sessions | IP leak traceability and compliance |
 
-> **Key Principle:** In production, the safest guardrail is *never sending restricted data to the LLM at all* — structural filtering beats instruction-following every time.
+> **Key Principle:** In production, the safest guardrail is *never sending restricted data to the LLM at all*. Structural filtering, and ultimately network/IAM segmentation (like what is done at Gruve), beats instruction-following every single time.
 
 ---
 
