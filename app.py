@@ -170,10 +170,11 @@ def get_ollama_summary(thread_text, user_profile, project_phase, context):
     {thread_text}
 
     TASK:
-    1. Summarize the key event.
-    2. Cross-reference the Ground Truth. Flag violations or relevant past decisions.
-    3. If an action item exists for this user's role, state it. Otherwise, state 'No action required.'
-    Max 3 sentences.
+    - SUMMARY: Summarize the key event in 1 sentence.
+    - SILO CROSS-REF: Reference Ground Truth to flag spec violations or past decisions.
+    - ROLE ACTION: If an action exists for this role, state it clearly. If not, state "No action required."
+
+    Keep the total response under 60 words. Use the labels above.
     """
     try:
         response = requests.post(
@@ -253,7 +254,6 @@ ent_data = load_data(DATA_PATH)
 users_data = load_data(USER_PATH)
 
 # Build identity lookup: username -> {display_name, role} from users.json
-# This is the core of the Identity Source of Truth — role is NEVER inferred from the username string
 identity_map = {
     u['username']: {
         "display_name": u.get('display_name', u['username']),
@@ -261,6 +261,25 @@ identity_map = {
     }
     for u in users_data['users']
 }
+
+# ─────────────────────────────────────────────
+# STATE MANAGEMENT
+# ─────────────────────────────────────────────
+# Initialize session state for messages so we can add them dynamically during the demo
+if 'messages' not in st.session_state:
+    ent_data_initial = load_data(DATA_PATH)
+    st.session_state.messages = ent_data_initial['messages']
+
+# Cache for LLM classifications to keep the demo fast
+if 'topic_cache' not in st.session_state:
+    st.session_state.topic_cache = {}
+
+def classify_topic_cached(text):
+    if text in st.session_state.topic_cache:
+        return st.session_state.topic_cache[text]
+    topic = classify_topic_with_llm(text)
+    st.session_state.topic_cache[text] = topic
+    return topic
 
 # Sidebar
 st.sidebar.header("User Identity")
@@ -284,6 +303,34 @@ else:
 
 st.sidebar.caption(f"Stakeholders: {', '.join(current_user.get('stakeholders', []))}")
 
+# ─────────────────────────────────────────────
+# SIMULATION CONTROLS
+# ─────────────────────────────────────────────
+st.sidebar.markdown("---")
+st.sidebar.header("🕹️ Demo: Live Ingestion")
+st.sidebar.caption("Simulate real-time events to see the Priority Matrix and AI Agent react.")
+
+if st.sidebar.button("🚨 Simulate: High-Voltage Blocker"):
+    # Inject a critical blocker into the Battery project thread
+    new_msg = {
+        "id": f"sim_{len(st.session_state.messages)}",
+        "thread_id": "b_005", # Adding to the existing Thermal Blocker thread
+        "project": "Battery B-800",
+        "channel": "thermal-testing",
+        "user": "tom.harris",
+        "text": "CRITICAL: MOSFET just hit 118C in the lab. Testing halted. The Gap Pad mitigation failed. We have a hardware fire risk."
+    }
+    st.session_state.messages.append(new_msg)
+    st.sidebar.success("Emergency message injected into #thermal-testing")
+
+if st.sidebar.button("🧹 Reset Demo Data"):
+    ent_data_reset = load_data(DATA_PATH)
+    st.session_state.messages = ent_data_reset['messages']
+    st.session_state.topic_cache = {}
+    st.sidebar.info("Demo data reset to baseline.")
+
+st.sidebar.markdown("---")
+
 if st.sidebar.button("Generate My Briefing"):
     st.header(f"Personalized Briefing: {current_user['username']}")
 
@@ -293,8 +340,8 @@ if st.sidebar.button("Generate My Briefing"):
 
         st.subheader(f"📂 {project_name}  |  `{current_phase}`")
 
-        # Filter messages for this project
-        project_msgs = [m for m in ent_data['messages'] if m['project'] == project_name]
+        # Filter messages for this project from SESSION STATE
+        project_msgs = [m for m in st.session_state.messages if m['project'] == project_name]
 
         # FIX 2: Aggregate into threads
         threads = aggregate_threads(project_msgs)
@@ -336,7 +383,7 @@ if st.sidebar.button("Generate My Briefing"):
                 if 'noise_type' in msg:
                     topic = msg['noise_type']
                 else:
-                    topic = classify_topic_with_llm(msg['text'])
+                    topic = classify_topic_cached(msg['text'])
 
                 topics.add(topic)
                 score = ent_data['weights'].get(current_user['role'], {}).get(topic, {}).get(current_phase, 0)
@@ -390,7 +437,11 @@ if st.sidebar.button("Generate My Briefing"):
                             identity = identity_map.get(sender, {"display_name": sender, "role": "Unknown"})
                             display = identity["display_name"]
                             role_tag = identity["role"]
-                            st.markdown(f"> `#{channel_tag}` **{display}** *({role_tag})*: {text}")
+
+                            with st.chat_message("user"):
+                                st.markdown(f"**{display}** *({role_tag})*")
+                                st.markdown(text)
+                                st.caption(f"`#{channel_tag}`")
                     st.markdown("")
                     with st.spinner("Agent cross-referencing silos..."):
                         summary = get_ollama_summary(item['content'], current_user, current_phase, context)
