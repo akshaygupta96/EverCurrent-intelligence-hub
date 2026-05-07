@@ -186,35 +186,40 @@ def generate_portfolio_digest(user_id):
 
 ## 5. Production Deployment Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
-│            EverCurrent Intelligence Hub                 │
+│            EverCurrent Intelligence Hub (Scale)         │
 │                                                         │
-│   [Slack Webhooks]  [Zoom/Otter]  [PLM/Drive]           │
+│   [Slack Webhooks]  [Zoom/Otter]  [PLM/Windchill]       │
 │         │               │              │                │
 │         └───────────────┴──────────────┘                │
 │                         │                               │
-│             [Ingestion API + SecurityFilter]            │
+│           [Async Ingestion API (FastAPI)]               │
+│           [SecurityFilter & Metadata Tagging]           │
 │                         │                               │
-│             [Celery Task Queue + Redis]                 │
+│             [Redis Queue / Celery Workers]              │
 │                         │                               │
 │       ┌─────────────────┴─────────────────┐             │
 │       │                                   │             │
-│ [Internal VPC Vector DB]       [External VPC Vector DB] │
+│  [INTERNAL VPC]                    [EXTERNAL VPC]       │
+│  - Internal Vector DB              - Vendor Vector DB   │
+│  - IP/Budgets/Transcripts          - Public Specs/Logs  │
+│  - Internal LLM Agent              - Vendor LLM Agent   │
 │       │                                   │             │
 │       └─────────────────┬─────────────────┘             │
 │                         │                               │
-│  [Okta SCIM]              [vLLM GPU Cluster]            │
-│  Identity Resolver         LLM Inference                │
-│         │                              │                │
-│         └───────────────┬──────────────┘                │
-│                         │                               │
+│  [Identity]             │           [Inference]         │
+│  Okta SCIM Resolver ────┘────────── vLLM GPU Cluster    │
+│                                                         │
 │               [Portfolio Digest API]                    │
 │                         │                               │
-│             [Streamlit / React Dashboard]               │
+│           [React / Next.js Enterprise Hub]              │
+│           (Highly-performant, RBAC-enabled UI)          │
 └─────────────────────────────────────────────────────────┘
 ```
 
-**Key Principle:** The core reasoning logic (3D matrix, noise filtering, RAG grounding) is identical
-between prototype and production. Only the infrastructure connectors (JSON → VectorDB,
-Ollama → vLLM, users.json → Okta SCIM) are swapped at scale.
+### The Transition Strategy (Prototype → Production)
+1.  **Frontend:** Migrate from **Streamlit** (Rapid Prototyping) to **React/Next.js**. This enables sub-second UI interactions, custom branding, and granular component-level access control.
+2.  **Security:** Implement **VPC-level isolation**. Instead of just code-level "if" statements, the Vendor LLM Agent physically lacks the network routing or IAM permissions to reach the Internal VPC.
+3.  **Storage:** Transition from **JSON files** to **Vector Databases (Pinecone/Milvus)** with auto-syncing ETL pipelines from PLM systems (Windchill).
+4.  **Inference:** Move from local **Ollama** to a distributed **vLLM GPU Cluster** to support thousands of concurrent briefings.
