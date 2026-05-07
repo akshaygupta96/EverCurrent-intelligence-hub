@@ -11,7 +11,7 @@ stays identical — only the infrastructure connectors change.
 │                                                         │
 │   [Local Files]        [Local Logic]      [Local AI]    │
 │   - users.json          - app.py           - Ollama     │
-│   - logic.json          - 3D Matrix        - Llama 3 8B │
+│   - enterprise_logic.json - 3D Matrix      - Llama 3 8B │
 │   - Text Silos          - State Mgmt                    │
 │         │                    │                  │       │
 │         └──────────┬─────────┴────────┬─────────┘       │
