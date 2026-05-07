@@ -1,10 +1,30 @@
-# EverCurrent Engineering Hub: Production Scaling Pseudocode
-
 ## Overview
 
 This document describes the **production-grade architecture** that replaces the prototype's
 flat JSON files and local Ollama calls. The core reasoning logic (3D matrix, RAG, noise filtering)
 stays identical — only the infrastructure connectors change.
+
+### The Prototype Architecture (The "Now")
+```text
+┌─────────────────────────────────────────────────────────┐
+│           EverCurrent Prototype (Local Dev)             │
+│                                                         │
+│   [Local Files]        [Local Logic]      [Local AI]    │
+│   - users.json          - app.py           - Ollama     │
+│   - logic.json          - 3D Matrix        - Llama 3 8B │
+│   - Text Silos          - State Mgmt                    │
+│         │                    │                  │       │
+│         └──────────┬─────────┴────────┬─────────┘       │
+│                    │                  │                 │
+│             [Context Loading]  [Topic Classification]   │
+│                    │                  │                 │
+│                    └─────────┬────────┘                 │
+│                              │                          │
+│                   [Streamlit UI Dashboard]              │
+│                   - Personalized Briefing               │
+│                   - Live Simulation Controls            │
+└─────────────────────────────────────────────────────────┘
+```
 
 ---
 
