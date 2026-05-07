@@ -4,7 +4,8 @@ This document describes the **production-grade architecture** that replaces the 
 flat JSON files and local Ollama calls. The core reasoning logic (3D matrix, RAG, noise filtering)
 stays identical — only the infrastructure connectors change.
 
-### The Prototype Architecture (The "Now")
+### The Prototype Architecture (Protoype)
+
 ```text
 ┌─────────────────────────────────────────────────────────┐
 │           EverCurrent Prototype (Local Dev)             │
@@ -239,7 +240,8 @@ def generate_portfolio_digest(user_id):
 ```
 
 ### The Transition Strategy (Prototype → Production)
-1.  **Frontend:** Migrate from **Streamlit** (Rapid Prototyping) to **React/Next.js**. This enables sub-second UI interactions, custom branding, and granular component-level access control.
-2.  **Security:** Implement **VPC-level isolation**. Instead of just code-level "if" statements, the Vendor LLM Agent physically lacks the network routing or IAM permissions to reach the Internal VPC.
-3.  **Storage:** Transition from **JSON files** to **Vector Databases (Pinecone/Milvus)** with auto-syncing ETL pipelines from PLM systems (Windchill).
-4.  **Inference:** Move from local **Ollama** to a distributed **vLLM GPU Cluster** to support thousands of concurrent briefings.
+
+1. **Frontend:** Migrate from **Streamlit** (Rapid Prototyping) to **React/Next.js**. This enables sub-second UI interactions, custom branding, and granular component-level access control.
+2. **Security:** Implement **VPC-level isolation**. Instead of just code-level "if" statements, the Vendor LLM Agent physically lacks the network routing or IAM permissions to reach the Internal VPC.
+3. **Storage:** Transition from **JSON files** to **Vector Databases (Pinecone/Milvus)** with auto-syncing ETL pipelines from PLM systems (Windchill).
+4. **Inference:** Move from local **Ollama** to a distributed **vLLM GPU Cluster** to support thousands of concurrent briefings.
