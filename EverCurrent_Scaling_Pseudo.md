@@ -244,4 +244,5 @@ def generate_portfolio_digest(user_id):
 1. **Frontend:** Migrate from **Streamlit** (Rapid Prototyping) to **React/Next.js**. This enables sub-second UI interactions, custom branding, and granular component-level access control.
 2. **Security:** Implement **VPC-level isolation**. Instead of just code-level "if" statements, the Vendor LLM Agent physically lacks the network routing or IAM permissions to reach the Internal VPC.
 3. **Storage:** Transition from **JSON files** to **Vector Databases (Pinecone/Milvus)** with auto-syncing ETL pipelines from PLM systems (Windchill).
-4. **Inference:** Move from local **Ollama** to a distributed **vLLM GPU Cluster** to support thousands of concurrent briefings.
+4. **Intelligence:** Supplement the Vector DB with a **Knowledge Graph (Neo4j)**. This enables "Ripple Effect" impact analysis, where a single component failure or design change can be automatically traced across the entire project portfolio to identify cross-project risks.
+5. **Inference:** Move from local **Ollama** to a distributed **vLLM GPU Cluster** to support thousands of concurrent briefings.
